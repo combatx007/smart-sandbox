@@ -1,0 +1,3 @@
+smart_blog:
+    resource: "@SmartBlogBundle/Resources/config/routing.yml"
+    prefix:   /
