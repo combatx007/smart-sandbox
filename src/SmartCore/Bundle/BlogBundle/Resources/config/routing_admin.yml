@@ -1,0 +1,7 @@
+smart_blog_admin_article_edit:
+    path: /admin/article/{id}/edit/
+    defaults: { _controller: SmartBlogBundle:Default:index }
+
+smart_blog_admin_article_create:
+    path: /admin/article/create/
+    defaults: { _controller: SmartBlogBundle:Default:index }

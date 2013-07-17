@@ -1,3 +1,9 @@
+homepage:
+    path: /
+    defaults:
+        _controller: FrameworkBundle:Template:template
+        template: '::homepage.html.twig'
+
 smart_blog:
     resource: "@SmartBlogBundle/Resources/config/routing.yml"
-    prefix:   /
+    prefix:   /blog/
