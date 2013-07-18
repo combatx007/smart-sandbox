@@ -25,13 +25,61 @@ class Tag
     /**
      * @var ArrayCollection
      *
-     * @ORM\ManyToMany(targetEntity="SmartCore\Bundle\BlogBundle\EntityPost", mappedBy="tags")
+     * @ORM\ManyToMany(targetEntity="SmartCore\Bundle\BlogBundle\Entity\Article", mappedBy="tags")
      */
-    protected $posts;
+    protected $articles;
 
-    public function __construct($name = null)
+    public function setId($id)
+    {
+        $this->id = $id;
+    }
+
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    public function setName($name)
     {
         $this->name = $name;
+    }
+
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * Add articles
+     *
+     * @param \SmartCore\Bundle\BlogBundle\Article $articles
+     * @return Tag
+     */
+    public function addArticle(\SmartCore\Bundle\BlogBundle\Article $articles)
+    {
+        $this->articles[] = $articles;
+
+        return $this;
+    }
+
+    /**
+     * Remove articles
+     *
+     * @param \SmartCore\Bundle\BlogBundle\Article $articles
+     */
+    public function removeArticle(\SmartCore\Bundle\BlogBundle\Article $articles)
+    {
+        $this->articles->removeElement($articles);
+    }
+
+    /**
+     * Get articles
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getArticles()
+    {
+        return $this->articles;
     }
 
     public function __toString()
