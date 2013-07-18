@@ -4,6 +4,7 @@ namespace SmartCore\Bundle\BlogBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection as ArrayCollection;
+
 /**
  * Tag entity.
  */
@@ -19,7 +20,7 @@ class Tag
     /**
      * @ORM\Column(name="text", type="string", length=255)
      */
-    protected $text;
+    protected $name;
 
     /**
      * @var ArrayCollection
