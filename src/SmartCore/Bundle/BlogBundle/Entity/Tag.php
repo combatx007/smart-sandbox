@@ -7,7 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection as ArrayCollection;
 use SmartCore\Bundle\BlogBundle\Entity\Article;
 
 /**
- * Tag entity.
+ * @ORM\Entity
  */
 class Tag
 {

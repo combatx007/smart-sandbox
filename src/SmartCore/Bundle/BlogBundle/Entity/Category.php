@@ -7,9 +7,10 @@ use Doctrine\Common\Collections\ArrayCollection as ArrayCollection;
 use SmartCore\Bundle\BlogBundle\Entity\Article;
 
 /**
- * Category entity.
+ * @ORM\Entity
  */
 class Category {
+
     /**
      * @ORM\Id
      * @ORM\Column(type="integer")
