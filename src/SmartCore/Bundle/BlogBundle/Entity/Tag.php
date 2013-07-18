@@ -25,7 +25,7 @@ class Tag
     /**
      * @var ArrayCollection
      *
-     * @ORM\ManyToMany(targetEntity="SmartCore\Bundle\BlogBundle\Entity\Article", mappedBy="tags")
+     * @ORM\ManyToMany(targetEntity="SmartCore\Bundle\BlogBundle\Entity\Article", mappedBy="tag")
      */
     protected $articles;
 
@@ -68,10 +68,10 @@ class Tag
     /**
      * Add articles
      *
-     * @param \SmartCore\Bundle\BlogBundle\Article $articles
+     * @param \SmartCore\Bundle\BlogBundle\Entity\Article $articles
      * @return Tag
      */
-    public function addArticle(\SmartCore\Bundle\BlogBundle\Article $articles)
+    public function addArticle(\SmartCore\Bundle\BlogBundle\Entity\Article $articles)
     {
         $this->articles[] = $articles;
 
@@ -81,9 +81,9 @@ class Tag
     /**
      * Remove articles
      *
-     * @param \SmartCore\Bundle\BlogBundle\Article $articles
+     * @param \SmartCore\Bundle\BlogBundle\Entity\Article $articles
      */
-    public function removeArticle(\SmartCore\Bundle\BlogBundle\Article $articles)
+    public function removeArticle(\SmartCore\Bundle\BlogBundle\Entity\Article $articles)
     {
         $this->articles->removeElement($articles);
     }

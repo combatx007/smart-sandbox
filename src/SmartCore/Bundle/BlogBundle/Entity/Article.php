@@ -4,7 +4,7 @@ namespace SmartCore\Bundle\BlogBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection as ArrayCollection;
-use SmartCore\Bundle\BlogBundle\Entity\Tag as Tag;
+use SmartCore\Bundle\BlogBundle\Entity\Tag;
 
 /**
  * @ORM\Entity HasLifecycleCallBacks
@@ -45,7 +45,7 @@ class Article
     protected $description;
 
     /**
-     * @ORM\OneToMany(targetEntity="SmartCore\Bundle\BlogBundle\Entity\Category", mappedBy="articles")
+     * @ORM\OneToMany(targetEntity="SmartCore\Bundle\BlogBundle\Entity\Category", mappedBy="article")
      */
     protected $category;
 
@@ -70,7 +70,7 @@ class Article
     protected $updated;
 
     /**
-     * Tags for article
+     * Tag for article
      *
      * @var ArrayCollection
      * @ORM\ManyToMany(targetEntity="Tag")
@@ -79,13 +79,13 @@ class Article
      *      inverseJoinColumns={@ORM\JoinColumn(name="tag_id", referencedColumnName="id")}
      * )
      */
-    private $tags;
+    private $tag;
 
     public function __construct($updated = null)
     {
         $this->created = new \DateTime();
         $this->updated = new \DateTime();
-        $this->tags = new ArrayCollection();
+        $this->tag = new ArrayCollection();
     }
 
     /**
@@ -122,16 +122,6 @@ class Article
     public function getCategory()
     {
         return $this->category;
-    }
-
-    /**
-     * @param string $created
-     * @return $this
-     */
-    public function setCreated($created)
-    {
-        $this->created = $created;
-        return $this;
     }
 
     /**
@@ -197,34 +187,34 @@ class Article
     }
 
     /**
-     * Add tags
+     * Add tag
      *
-     * @param Tag $tags
+     * @param Tag $tag
      * @return Article
      */
-    public function addTag(\SmartCore\Bundle\BlogBundle\Entity\Tag $tags)
+    public function addTag(Tag $tag)
     {
-        $this->tags[] = $tags;
+        $this->tag[] = $tag;
 
         return $this;
     }
 
     /**
-     * Remove tags
+     * Remove tag
      *
-     * @param \SmartCore\Bundle\BlogBundle\Entity\Tag $tags
+     * @param \SmartCore\Bundle\BlogBundle\Entity\Tag $tag
      */
-    public function removeTag(\SmartCore\Bundle\BlogBundle\Entity\Tag $tags)
+    public function removeTag(Tag $tag)
     {
-        $this->tags->removeElement($tags);
+        $this->tag->removeElement($tag);
     }
 
     /**
      * @return \Doctrine\Common\Collections\ArrayCollection
      */
-    public function getTags()
+    public function getTag()
     {
-        return $this->tags;
+        return $this->tag;
     }
 
     /**
@@ -261,16 +251,6 @@ class Article
     public function getTitle()
     {
         return $this->title;
-    }
-
-    /**
-     * @param string $updated
-     * @return $this
-     */
-    public function setUpdated($updated)
-    {
-        $this->updated = $updated;
-        return $this;
     }
 
     /**

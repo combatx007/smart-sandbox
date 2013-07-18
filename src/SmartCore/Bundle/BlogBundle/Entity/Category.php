@@ -4,7 +4,7 @@ namespace SmartCore\Bundle\BlogBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection as ArrayCollection;
-use SmartCore\Bundle\BlogBundle\Article as Article;
+use SmartCore\Bundle\BlogBundle\Entity\Article;
 
 /**
  * Category entity.
@@ -29,10 +29,10 @@ class Category {
 
     /**
      * @var ArrayCollection
-     * @ORM\ManyToOne(targetEntity="SmartCore\Bundle\BlogBundle\Article", inversedBy="category")
+     * @ORM\ManyToOne(targetEntity="SmartCore\Bundle\BlogBundle\Entity\Article", inversedBy="category")
      * @ORM\JoinColumn(name="article_id", referencedColumnName="id")
      */
-    protected $articles;
+    protected $article;
 
     /**
      * @ORM\Column(type="string")
@@ -45,36 +45,36 @@ class Category {
     }
 
     /**
-     * Add articles
+     * Add article
      *
-     * @param Article $articles
+     * @param \SmartCore\Bundle\BlogBundle\Entity\Article $article
      * @return $this
      */
-    public function addArticle(Article $articles)
+    public function addArticle(Article $article)
     {
-        $this->articles[] = $articles;
+        $this->article[] = $article;
 
         return $this;
     }
 
     /**
-     * Remove articles
+     * Remove article
      *
-     * @param Article $articles
+     * @param \SmartCore\Bundle\BlogBundle\Entity\Article $article
      */
-    public function removeArticle(Article $articles)
+    public function removeArticle(Article $article)
     {
-        $this->articles->removeElement($articles);
+        $this->article->removeElement($article);
     }
 
     /**
-     * Get articles
+     * Get article
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getArticles()
+    public function getArticle()
     {
-        return $this->articles;
+        return $this->article;
     }
 
     /**
