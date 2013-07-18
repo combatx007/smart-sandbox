@@ -8,6 +8,7 @@ use SmartCore\Bundle\BlogBundle\Entity\Article;
 
 /**
  * @ORM\Entity
+ * @ORM\Table(name="categories")
  */
 class Category {
 
@@ -19,9 +20,9 @@ class Category {
     protected $id;
 
     /**
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", unique=true)
      */
-    protected $name;
+    protected $uri_part;
 
     /**
      * @ORM\Column(type="string")
@@ -33,63 +34,36 @@ class Category {
      * @ORM\ManyToOne(targetEntity="Article", inversedBy="category")
      * @ORM\JoinColumn(name="article_id", referencedColumnName="id")
      */
-    protected $article;
+    protected $articles;
 
     /**
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="datetime")
      */
-    protected $uri_part;
+    protected $created;
 
+    public function __construct()
+    {
+        $this->articles = new ArrayCollection();
+    }
+
+    /**
+     * @return string
+     */
     public function __toString()
     {
         return $this->getName();
     }
 
     /**
-     * Add article
-     *
-     * @param Article $article
-     * @return $this
+     * @return Article[]
      */
-    public function addArticle(Article $article)
+    public function getArticles()
     {
-        $this->article[] = $article;
-
-        return $this;
+        return $this->articles;
     }
 
     /**
-     * Remove article
-     *
-     * @param Article $article
-     */
-    public function removeArticle(Article $article)
-    {
-        $this->article->removeElement($article);
-    }
-
-    /**
-     * Get article
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getArticle()
-    {
-        return $this->article;
-    }
-
-    /**
-     * @param integer $id
-     * @return $this
-     */
-    public function setId($id)
-    {
-        $this->id = $id;
-        return $this;
-    }
-
-    /**
-     * @return $this->id
+     * @return integer
      */
     public function getId()
     {
@@ -107,7 +81,7 @@ class Category {
     }
 
     /**
-     * @return string $this->name
+     * @return string
      */
     public function getName()
     {
@@ -125,7 +99,7 @@ class Category {
     }
 
     /**
-     * @return $this->title
+     * @return string
      */
     public function getTitle()
     {
@@ -139,14 +113,23 @@ class Category {
     public function setUriPart($uri_part)
     {
         $this->uri_part = $uri_part;
+        return $this;
     }
 
     /**
-     * @return $this->uri_part
+     * @return string
      */
 
     public function getUriPart()
     {
         return $this->uri_part;
+    }
+
+    /**
+     * @return \Datetime
+     */
+    public function getCreated()
+    {
+        return $this->created;
     }
 }

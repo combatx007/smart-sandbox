@@ -4,11 +4,19 @@ namespace SmartCore\Bundle\BlogBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection as ArrayCollection;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use SmartCore\Bundle\BlogBundle\Entity\Tag;
+use SmartCore\Bundle\BlogBundle\Entity\Category;
 
 /**
- * @ORM\Entity HasLifecycleCallBacks
- * @ORM\Table(name="article")
+ * @ORM\Entity
+ * @ORM\Table(name="articles",
+ *      indexes={
+ *          @ORM\Index(name="user_id", columns={"user_id"}),
+ *          @ORM\Index(name="created", columns={"created"})
+ *      }
+ * )
+ * @UniqueEntity(fields={"uri_part"}, message="Статья с таким сегментом URI уже существует.")
  */
 class Article
 {
@@ -50,7 +58,7 @@ class Article
     protected $category;
 
     /**
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", unique=true)
      */
     protected $uri_part;
 
@@ -65,26 +73,24 @@ class Article
     protected $created;
 
     /**
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="datetime", nullable=true)
      */
     protected $updated;
 
     /**
-     * Tag for article
-     *
      * @var ArrayCollection
      * @ORM\ManyToMany(targetEntity="Tag")
-     * @ORM\JoinTable(name="blog_articles_tags",
+     * @ORM\JoinTable(name="articles_tags_relations",
      *      joinColumns={@ORM\JoinColumn(name="article_id", referencedColumnName="id")},
      *      inverseJoinColumns={@ORM\JoinColumn(name="tag_id", referencedColumnName="id")}
      * )
      */
-    private $tags;
+    protected $tags;
 
-    public function __construct($updated = null)
+    public function __construct()
     {
         $this->created = new \DateTime();
-        $this->updated = new \DateTime();
+        $this->updated = null;
         $this->tags = new ArrayCollection();
     }
 
@@ -99,7 +105,7 @@ class Article
     }
 
     /**
-     * @return $this->annotation
+     * @return string
      */
     public function getAnnotation()
     {
@@ -107,17 +113,7 @@ class Article
     }
 
     /**
-     * @param string $category
-     * @return $this
-     */
-    public function setCategory($category)
-    {
-        $this->category = $category;
-        return $this;
-    }
-
-    /**
-     * @return $this->category
+     * @return Category
      */
     public function getCategory()
     {
@@ -125,7 +121,17 @@ class Article
     }
 
     /**
-     * @return $this->created
+     * @param Category $category
+     * @return $this
+     */
+    public function setCategory(Category $category)
+    {
+        $this->category = $category;
+        return $this;
+    }
+
+    /**
+     * @return \Datetime
      */
     public function getCreated()
     {
@@ -143,7 +149,7 @@ class Article
     }
 
     /**
-     * @return $this->description
+     * @return string
      */
     public function getDescription()
     {
@@ -151,17 +157,7 @@ class Article
     }
 
     /**
-     * @param string $id
-     * @return $this
-     */
-    public function setId($id)
-    {
-        $this->id = $id;
-        return $this;
-    }
-
-    /**
-     * @return $this->id
+     * @return integer
      */
     public function getId()
     {
@@ -179,7 +175,7 @@ class Article
     }
 
     /**
-     * @return $this->keywords
+     * @return string
      */
     public function getKeywords()
     {
@@ -187,32 +183,29 @@ class Article
     }
 
     /**
-     * Add tag
-     *
      * @param Tag $tag
-     * @return Article
+     * @return $this
      */
     public function addTag(Tag $tag)
     {
         $this->tags[] = $tag;
-
         return $this;
     }
 
     /**
-     * Remove tag
-     *
      * @param Tag $tag
+     * @return $this
      */
     public function removeTag(Tag $tag)
     {
         $this->tags->removeElement($tag);
+        return $this;
     }
 
     /**
-     * @return \Doctrine\Common\Collections\ArrayCollection
+     * @return Tag[]
      */
-    public function getTag()
+    public function getTags()
     {
         return $this->tags;
     }
@@ -228,7 +221,7 @@ class Article
     }
 
     /**
-     * @return $this->text
+     * @return string
      */
     public function getText()
     {
@@ -246,7 +239,7 @@ class Article
     }
 
     /**
-     * @return $this->title
+     * @return string
      */
     public function getTitle()
     {
@@ -254,7 +247,7 @@ class Article
     }
 
     /**
-     * @return $this->updated
+     * @return \DateTime|null
      */
     public function getUpdated()
     {
@@ -272,7 +265,7 @@ class Article
     }
 
     /**
-     * @return $this->uri_part
+     * @return string
      */
     public function getUriPart()
     {
@@ -290,7 +283,7 @@ class Article
     }
 
     /**
-     * @return $this->user_id
+     * @return integer
      */
     public function getUserId()
     {

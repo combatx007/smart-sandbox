@@ -8,6 +8,7 @@ use SmartCore\Bundle\BlogBundle\Entity\Article;
 
 /**
  * @ORM\Entity
+ * @ORM\Table(name="tags")
  */
 class Tag
 {
@@ -19,29 +20,36 @@ class Tag
     protected $id;
 
     /**
-     * @ORM\Column(name="text", type="string", length=255)
+     * @ORM\Column(name="name", type="string", length=255, unique=true)
      */
     protected $name;
 
     /**
      * @var ArrayCollection
-     *
-     * @ORM\ManyToMany(targetEntity="Article", mappedBy="tag")
+     * @ORM\ManyToMany(targetEntity="Article", mappedBy="tags")
      */
     protected $articles;
 
     /**
-     * @param integer $id
-     * @return $this
+     * @ORM\Column(type="datetime")
      */
-    public function setId($id)
+    protected $created;
+
+    public function __construct()
     {
-        $this->id = $id;
-        return $this;
+        $this->articles = new ArrayCollection();
     }
 
     /**
-     * @return $this->id
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->getName();
+    }
+
+    /**
+     * @return integer
      */
     public function getId()
     {
@@ -49,7 +57,7 @@ class Tag
     }
 
     /**
-     * @param integer $name
+     * @param string $name
      * @return $this
      */
     public function setName($name)
@@ -59,7 +67,7 @@ class Tag
     }
 
     /**
-     * @return string $this->name
+     * @return string
      */
     public function getName()
     {
@@ -67,40 +75,38 @@ class Tag
     }
 
     /**
-     * Add articles
-     *
-     * @param Article $articles
-     * @return Tag
+     * @param Article $article
+     * @return $this
      */
-    public function addArticle(Article $articles)
+    public function addArticle(Article $article)
     {
-        $this->articles[] = $articles;
-
+        $this->articles[] = $article;
         return $this;
     }
 
     /**
-     * Remove articles
-     *
-     * @param Article $articles
+     * @param Article $article
+     * @return $this
      */
-    public function removeArticle(Article $articles)
+    public function removeArticle(Article $article)
     {
-        $this->articles->removeElement($articles);
+        $this->articles->removeElement($article);
+        return $this;
     }
 
     /**
-     * Get articles
-     *
-     * @return \Doctrine\Common\Collections\Collection
+     * @return Article[]
      */
     public function getArticles()
     {
         return $this->articles;
     }
 
-    public function __toString()
+    /**
+     * @return \Datetime
+     */
+    public function getCreated()
     {
-        return $this->getName();
+        return $this->created;
     }
 }
