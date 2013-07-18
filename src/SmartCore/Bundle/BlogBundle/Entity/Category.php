@@ -4,6 +4,7 @@ namespace SmartCore\Bundle\BlogBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection as ArrayCollection;
+use SmartCore\Bundle\BlogBundle\Article as Article;
 
 /**
  * Category entity.
@@ -46,10 +47,10 @@ class Category {
     /**
      * Add articles
      *
-     * @param \SmartCore\Bundle\BlogBundle\Article $articles
-     * @return Category
+     * @param Article $articles
+     * @return $this
      */
-    public function addArticle(\SmartCore\Bundle\BlogBundle\Article $articles)
+    public function addArticle(Article $articles)
     {
         $this->articles[] = $articles;
 
@@ -59,9 +60,9 @@ class Category {
     /**
      * Remove articles
      *
-     * @param \SmartCore\Bundle\BlogBundle\Article $articles
+     * @param Article $articles
      */
-    public function removeArticle(\SmartCore\Bundle\BlogBundle\Article $articles)
+    public function removeArticle(Article $articles)
     {
         $this->articles->removeElement($articles);
     }
@@ -76,40 +77,72 @@ class Category {
         return $this->articles;
     }
 
+    /**
+     * @param integer $id
+     * @return $this
+     */
     public function setId($id)
     {
         $this->id = $id;
+        return $this;
     }
 
+    /**
+     * @return $this->id
+     */
     public function getId()
     {
         return $this->id;
     }
 
+    /**
+     * @param string $name
+     * @return $this
+     */
     public function setName($name)
     {
         $this->name = $name;
+        return $this;
     }
 
+    /**
+     * @return string $this->name
+     */
     public function getName()
     {
         return $this->name;
     }
 
+    /**
+     * @param string $title
+     * @return $this
+     */
     public function setTitle($title)
     {
         $this->title = $title;
+        return $this;
     }
 
+    /**
+     * @return $this->title
+     */
     public function getTitle()
     {
         return $this->title;
     }
 
+    /**
+     * @param string $uri_part
+     * @return $this
+     */
     public function setUriPart($uri_part)
     {
         $this->uri_part = $uri_part;
     }
+
+    /**
+     * @return $this->uri_part
+     */
 
     public function getUriPart()
     {

@@ -4,6 +4,7 @@ namespace SmartCore\Bundle\BlogBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection as ArrayCollection;
+use SmartCore\Bundle\BlogBundle\Entity\Tag as Tag;
 
 /**
  * @ORM\Entity HasLifecycleCallBacks
@@ -54,7 +55,7 @@ class Article
     protected $uri_part;
 
     /**
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="integer")
      */
     protected $user_id;
 
@@ -72,7 +73,7 @@ class Article
      * Tags for article
      *
      * @var ArrayCollection
-     * @ORM\ManyToMany(targetEntity="SmartCore\Bundle\BlogBundle\Entity\Tag")
+     * @ORM\ManyToMany(targetEntity="Tag")
      * @ORM\JoinTable(name="blog_articles_tags",
      *      joinColumns={@ORM\JoinColumn(name="article_id", referencedColumnName="id")},
      *      inverseJoinColumns={@ORM\JoinColumn(name="tag_id", referencedColumnName="id")}
@@ -87,61 +88,109 @@ class Article
         $this->tags = new ArrayCollection();
     }
 
+    /**
+     * @param string annotation
+     * @return $this
+     */
     public function setAnnotation($annotation)
     {
         $this->annotation = $annotation;
+        return $this;
     }
 
+    /**
+     * @return $this->annotation
+     */
     public function getAnnotation()
     {
         return $this->annotation;
     }
 
+    /**
+     * @param string $category
+     * @return $this
+     */
     public function setCategory($category)
     {
         $this->category = $category;
+        return $this;
     }
 
+    /**
+     * @return $this->category
+     */
     public function getCategory()
     {
         return $this->category;
     }
 
+    /**
+     * @param string $created
+     * @return $this
+     */
     public function setCreated($created)
     {
         $this->created = $created;
+        return $this;
     }
 
+    /**
+     * @return $this->created
+     */
     public function getCreated()
     {
         return $this->created;
     }
 
+    /**
+     * @param string $description
+     * @return $this
+     */
     public function setDescription($description)
     {
         $this->description = $description;
+        return $this;
     }
 
+    /**
+     * @return $this->description
+     */
     public function getDescription()
     {
         return $this->description;
     }
 
+    /**
+     * @param string $id
+     * @return $this
+     */
     public function setId($id)
     {
         $this->id = $id;
+        return $this;
     }
 
+    /**
+     * @return $this->id
+     */
     public function getId()
     {
         return $this->id;
     }
 
+    /**
+     * @param string $keywords
+     * @return $this
+     */
     public function setKeywords($keywords)
     {
         $this->keywords = $keywords;
+        return $this;
     }
 
+    /**
+     * @return $this->keywords
+     */
     public function getKeywords()
     {
         return $this->keywords;
@@ -150,7 +199,7 @@ class Article
     /**
      * Add tags
      *
-     * @param \SmartCore\Bundle\BlogBundle\Entity\Tag $tags
+     * @param Tag $tags
      * @return Article
      */
     public function addTag(\SmartCore\Bundle\BlogBundle\Entity\Tag $tags)
@@ -178,55 +227,93 @@ class Article
         return $this->tags;
     }
 
+    /**
+     * @param string $text
+     * @return $this
+     */
     public function setText($text)
     {
         $this->text = $text;
+        return $this;
     }
 
+    /**
+     * @return $this->text
+     */
     public function getText()
     {
         return $this->text;
     }
 
+    /**
+     * @param string $title
+     * @return $this
+     */
     public function setTitle($title)
     {
         $this->title = $title;
+        return $this;
     }
 
+    /**
+     * @return $this->title
+     */
     public function getTitle()
     {
         return $this->title;
     }
 
+    /**
+     * @param string $updated
+     * @return $this
+     */
     public function setUpdated($updated)
     {
         $this->updated = $updated;
+        return $this;
     }
 
+    /**
+     * @return $this->updated
+     */
     public function getUpdated()
     {
         return $this->updated;
     }
 
+    /**
+     * @param string $uri_part
+     * @return $this
+     */
     public function setUriPart($uri_part)
     {
         $this->uri_part = $uri_part;
+        return $this;
     }
 
+    /**
+     * @return $this->uri_part
+     */
     public function getUriPart()
     {
         return $this->uri_part;
     }
 
+    /**
+     * @param integer $user_id
+     * @return $this
+     */
     public function setUserId($user_id)
     {
         $this->user_id = $user_id;
+        return $this;
     }
 
+    /**
+     * @return $this->user_id
+     */
     public function getUserId()
     {
         return $this->user_id;
     }
-
-
 }
