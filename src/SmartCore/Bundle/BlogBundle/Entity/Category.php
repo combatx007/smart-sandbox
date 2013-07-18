@@ -29,7 +29,7 @@ class Category {
 
     /**
      * @var ArrayCollection
-     * @ORM\ManyToOne(targetEntity="SmartCore\Bundle\BlogBundle\Entity\Article", inversedBy="category")
+     * @ORM\ManyToOne(targetEntity="Article", inversedBy="category")
      * @ORM\JoinColumn(name="article_id", referencedColumnName="id")
      */
     protected $article;
@@ -47,7 +47,7 @@ class Category {
     /**
      * Add article
      *
-     * @param \SmartCore\Bundle\BlogBundle\Entity\Article $article
+     * @param Article $article
      * @return $this
      */
     public function addArticle(Article $article)
@@ -60,7 +60,7 @@ class Category {
     /**
      * Remove article
      *
-     * @param \SmartCore\Bundle\BlogBundle\Entity\Article $article
+     * @param Article $article
      */
     public function removeArticle(Article $article)
     {

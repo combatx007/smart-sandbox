@@ -45,7 +45,7 @@ class Article
     protected $description;
 
     /**
-     * @ORM\OneToMany(targetEntity="SmartCore\Bundle\BlogBundle\Entity\Category", mappedBy="article")
+     * @ORM\OneToMany(targetEntity="Category", mappedBy="article")
      */
     protected $category;
 
@@ -79,17 +79,17 @@ class Article
      *      inverseJoinColumns={@ORM\JoinColumn(name="tag_id", referencedColumnName="id")}
      * )
      */
-    private $tag;
+    private $tags;
 
     public function __construct($updated = null)
     {
         $this->created = new \DateTime();
         $this->updated = new \DateTime();
-        $this->tag = new ArrayCollection();
+        $this->tags = new ArrayCollection();
     }
 
     /**
-     * @param string annotation
+     * @param string $annotation
      * @return $this
      */
     public function setAnnotation($annotation)
@@ -194,7 +194,7 @@ class Article
      */
     public function addTag(Tag $tag)
     {
-        $this->tag[] = $tag;
+        $this->tags[] = $tag;
 
         return $this;
     }
@@ -202,11 +202,11 @@ class Article
     /**
      * Remove tag
      *
-     * @param \SmartCore\Bundle\BlogBundle\Entity\Tag $tag
+     * @param Tag $tag
      */
     public function removeTag(Tag $tag)
     {
-        $this->tag->removeElement($tag);
+        $this->tags->removeElement($tag);
     }
 
     /**
@@ -214,7 +214,7 @@ class Article
      */
     public function getTag()
     {
-        return $this->tag;
+        return $this->tags;
     }
 
     /**

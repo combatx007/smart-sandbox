@@ -4,6 +4,7 @@ namespace SmartCore\Bundle\BlogBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection as ArrayCollection;
+use SmartCore\Bundle\BlogBundle\Entity\Article;
 
 /**
  * Tag entity.
@@ -25,7 +26,7 @@ class Tag
     /**
      * @var ArrayCollection
      *
-     * @ORM\ManyToMany(targetEntity="SmartCore\Bundle\BlogBundle\Entity\Article", mappedBy="tag")
+     * @ORM\ManyToMany(targetEntity="Article", mappedBy="tag")
      */
     protected $articles;
 
@@ -68,10 +69,10 @@ class Tag
     /**
      * Add articles
      *
-     * @param \SmartCore\Bundle\BlogBundle\Entity\Article $articles
+     * @param Article $articles
      * @return Tag
      */
-    public function addArticle(\SmartCore\Bundle\BlogBundle\Entity\Article $articles)
+    public function addArticle(Article $articles)
     {
         $this->articles[] = $articles;
 
@@ -81,9 +82,9 @@ class Tag
     /**
      * Remove articles
      *
-     * @param \SmartCore\Bundle\BlogBundle\Entity\Article $articles
+     * @param Article $articles
      */
-    public function removeArticle(\SmartCore\Bundle\BlogBundle\Entity\Article $articles)
+    public function removeArticle(Article $articles)
     {
         $this->articles->removeElement($articles);
     }
