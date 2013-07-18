@@ -36,4 +36,9 @@ class Category {
      * @ORM\Column(type="string")
      */
     protected $uri_part;
+
+    public function __toString()
+    {
+        return $this->getName();
+    }
 }
