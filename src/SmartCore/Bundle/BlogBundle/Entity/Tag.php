@@ -29,8 +29,8 @@ class Tag
      */
     protected $posts;
 
-    public function __construct($text = null)
+    public function __construct($name = null)
     {
-        $this->text = $text;
+        $this->name = $name;
     }
 }
