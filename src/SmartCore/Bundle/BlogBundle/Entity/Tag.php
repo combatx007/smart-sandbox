@@ -38,6 +38,7 @@ class Tag
     public function __construct()
     {
         $this->articles = new ArrayCollection();
+        $this->created = new \DateTime();
     }
 
     /**
@@ -72,26 +73,6 @@ class Tag
     public function getName()
     {
         return $this->name;
-    }
-
-    /**
-     * @param Article $article
-     * @return $this
-     */
-    public function addArticle(Article $article)
-    {
-        $this->articles[] = $article;
-        return $this;
-    }
-
-    /**
-     * @param Article $article
-     * @return $this
-     */
-    public function removeArticle(Article $article)
-    {
-        $this->articles->removeElement($article);
-        return $this;
     }
 
     /**
