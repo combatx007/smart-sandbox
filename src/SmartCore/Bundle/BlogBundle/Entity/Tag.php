@@ -76,26 +76,6 @@ class Tag
     }
 
     /**
-     * @param Article $article
-     * @return $this
-     */
-    public function addArticle(Article $article)
-    {
-        $this->articles[] = $article;
-        return $this;
-    }
-
-    /**
-     * @param Article $article
-     * @return $this
-     */
-    public function removeArticle(Article $article)
-    {
-        $this->articles->removeElement($article);
-        return $this;
-    }
-
-    /**
      * @return Article[]
      */
     public function getArticles()
