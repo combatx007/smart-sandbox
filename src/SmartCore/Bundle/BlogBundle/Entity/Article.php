@@ -53,7 +53,7 @@ class Article
     protected $description;
 
     /**
-     * @ORM\OneToMany(targetEntity="Category", mappedBy="article")
+     * @ORM\OneToMany(targetEntity="Category", mappedBy="articles")
      */
     protected $category;
 

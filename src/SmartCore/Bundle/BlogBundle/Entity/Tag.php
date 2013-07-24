@@ -25,12 +25,6 @@ class Tag
     protected $name;
 
     /**
-     * @var ArrayCollection
-     * @ORM\ManyToMany(targetEntity="Article", mappedBy="tags")
-     */
-    protected $articles;
-
-    /**
      * @ORM\Column(type="datetime")
      */
     protected $created;
