@@ -24,6 +24,12 @@ class Tag
      */
     protected $name;
 
+    /**
+     * @var ArrayCollection
+     * @ORM\ManyToMany(targetEntity="Article", mappedBy="tags")
+     */
+    protected $articles;
+
     public function __construct()
     {
         $this->articles = new ArrayCollection();
@@ -61,5 +67,33 @@ class Tag
     public function getName()
     {
         return $this->name;
+    }
+
+    /**
+     * @param Article $article
+     * @return $this
+     */
+    public function addArticle(Article $article)
+    {
+        $this->articles[] = $article;
+        return $this;
+    }
+
+    /**
+     * @param Article $article
+     * @return $this
+     */
+    public function removeArticle(Article $article)
+    {
+        $this->articles->removeElement($article);
+        return $this;
+    }
+
+    /**
+     * @return Article[]
+     */
+    public function getArticles()
+    {
+        return $this->articles;
     }
 }
