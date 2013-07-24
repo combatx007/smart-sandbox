@@ -53,7 +53,8 @@ class Article
     protected $description;
 
     /**
-     * @ORM\OneToMany(targetEntity="Category", mappedBy="articles")
+     * @ORM\ManyToOne(targetEntity="Category", inversedBy="articles")
+     * @ORM\JoinColumn(name="category_id", referencedColumnName="id")
      */
     protected $category;
 

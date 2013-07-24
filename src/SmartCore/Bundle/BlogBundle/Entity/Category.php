@@ -30,9 +30,7 @@ class Category {
     protected $title;
 
     /**
-     * @var ArrayCollection
-     * @ORM\ManyToOne(targetEntity="Article", inversedBy="category")
-     * @ORM\JoinColumn(name="article_id", referencedColumnName="id")
+     * @ORM\OneToMany(targetEntity="Article", mappedBy="category")
      */
     protected $articles;
 
