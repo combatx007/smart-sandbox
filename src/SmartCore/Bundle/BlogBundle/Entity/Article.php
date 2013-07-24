@@ -64,7 +64,7 @@ class Article
     protected $uri_part;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="string")
      */
     protected $user_id;
 
@@ -274,7 +274,7 @@ class Article
     }
 
     /**
-     * @param integer $user_id
+     * @param string $user_id
      * @return $this
      */
     public function setUserId($user_id)
@@ -284,7 +284,7 @@ class Article
     }
 
     /**
-     * @return integer
+     * @return string
      */
     public function getUserId()
     {

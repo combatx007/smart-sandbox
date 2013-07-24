@@ -35,8 +35,9 @@ class Tag
      */
     protected $created;
 
-    public function __construct()
+    public function __construct($name)
     {
+        $this->name = $name;
         $this->articles = new ArrayCollection();
         $this->created = new \DateTime();
     }
