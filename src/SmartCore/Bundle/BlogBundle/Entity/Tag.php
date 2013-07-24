@@ -30,9 +30,15 @@ class Tag
      */
     protected $articles;
 
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    protected $created;
+
     public function __construct()
     {
         $this->articles = new ArrayCollection();
+        $this->created = new \DateTime();
     }
 
     /**
@@ -95,5 +101,13 @@ class Tag
     public function getArticles()
     {
         return $this->articles;
+    }
+
+    /**
+     * @return \Datetime
+     */
+    public function getCreated()
+    {
+        return $this->created;
     }
 }
