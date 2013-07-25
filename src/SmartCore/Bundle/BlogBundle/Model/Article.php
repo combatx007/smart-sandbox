@@ -44,12 +44,6 @@ class Article
     protected $description;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Category", inversedBy="articles")
-     * @ORM\JoinColumn(name="category_id")
-     */
-    protected $category;
-
-    /**
      * @ORM\Column(type="string", unique=true)
      */
     protected $uri_part;
@@ -63,16 +57,6 @@ class Article
      * @ORM\Column(type="datetime", nullable=true)
      */
     protected $updated;
-
-    /**
-     * @var ArrayCollection
-     * @ORM\ManyToMany(targetEntity="Tag", inversedBy="articles")
-     * @ORM\JoinTable(name="articles_tags_relations",
-     *      joinColumns={@ORM\JoinColumn(name="article_id")},
-     *      inverseJoinColumns={@ORM\JoinColumn(name="tag_id")}
-     * )
-     */
-    protected $tags;
 
     public function __construct()
     {
@@ -97,24 +81,6 @@ class Article
     public function getAnnotation()
     {
         return $this->annotation;
-    }
-
-    /**
-     * @return Category
-     */
-    public function getCategory()
-    {
-        return $this->category;
-    }
-
-    /**
-     * @param Category $category
-     * @return $this
-     */
-    public function setCategory(Category $category)
-    {
-        $this->category = $category;
-        return $this;
     }
 
     /**
@@ -167,34 +133,6 @@ class Article
     public function getKeywords()
     {
         return $this->keywords;
-    }
-
-    /**
-     * @param Tag $tag
-     * @return $this
-     */
-    public function addTag(Tag $tag)
-    {
-        $this->tags[] = $tag;
-        return $this;
-    }
-
-    /**
-     * @param Tag $tag
-     * @return $this
-     */
-    public function removeTag(Tag $tag)
-    {
-        $this->tags->removeElement($tag);
-        return $this;
-    }
-
-    /**
-     * @return Tag[]
-     */
-    public function getTags()
-    {
-        return $this->tags;
     }
 
     /**

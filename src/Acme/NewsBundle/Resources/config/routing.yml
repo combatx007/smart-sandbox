@@ -1,0 +1,7 @@
+acme_news_index:
+    path: /
+    defaults: { _controller: AcmeNewsBundle:Default:index }
+
+acme_news_article:
+    path: /{slug}/
+    defaults: { _controller: AcmeNewsBundle:Default:index }

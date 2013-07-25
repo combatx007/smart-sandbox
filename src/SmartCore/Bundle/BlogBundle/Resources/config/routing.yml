@@ -1,4 +1,4 @@
-smart_blog_home:
+smart_blog_index:
     path: /
     defaults: { _controller: SmartBlogBundle:Default:index }
 
