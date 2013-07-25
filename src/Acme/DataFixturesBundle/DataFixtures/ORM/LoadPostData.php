@@ -7,9 +7,9 @@ use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\DependencyInjection\ContainerAware;
 use Acme\UserBundle\Entity\User;
-use SmartCore\Bundle\BlogBundle\Entity\Article;
-use SmartCore\Bundle\BlogBundle\Entity\Tag;
-use SmartCore\Bundle\BlogBundle\Entity\Category;
+use Acme\BlogBundle\Entity\Article;
+use Acme\BlogBundle\Entity\Category;
+use Acme\BlogBundle\Entity\Tag;
 use FOS\UserBundle\Model\UserManager;
 
 class LoadPostData extends ContainerAware implements FixtureInterface
