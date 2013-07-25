@@ -1,6 +1,6 @@
 <?php
 
-namespace Acme\Bundle\DataFixturesBundle;
+namespace Acme\DataFixturesBundle;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 

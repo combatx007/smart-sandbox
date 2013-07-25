@@ -1,6 +1,6 @@
 <?php
 
-namespace Acme\Bundle\BlogBundle\Entity;
+namespace Acme\BlogBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;

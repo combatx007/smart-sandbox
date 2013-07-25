@@ -1,6 +1,6 @@
 <?php
 
-namespace Acme\Bundle\BlogBundle;
+namespace Acme\BlogBundle;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 use SmartCore\Bundle\BlogBundle\SmartBlogBundle;

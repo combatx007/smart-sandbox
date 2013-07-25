@@ -1,12 +1,12 @@
 <?php
-namespace Acme\Bundle\DataFixturesBundle\ORM;
+namespace Acme\DataFixturesBundle\ORM;
 
 use Doctrine\Common\DataFixtures\FixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\DependencyInjection\ContainerAware;
-use Acme\Bundle\UserBundle\Entity\User;
+use Acme\UserBundle\Entity\User;
 use SmartCore\Bundle\BlogBundle\Entity\Article;
 use SmartCore\Bundle\BlogBundle\Entity\Tag;
 use SmartCore\Bundle\BlogBundle\Entity\Category;
