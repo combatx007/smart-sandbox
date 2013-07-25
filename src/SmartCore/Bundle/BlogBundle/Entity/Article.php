@@ -64,11 +64,6 @@ class Article
     protected $uri_part;
 
     /**
-     * @ORM\Column(type="string")
-     */
-    protected $user_id;
-
-    /**
      * @ORM\Column(type="datetime")
      */
     protected $created;
@@ -271,23 +266,5 @@ class Article
     public function getUriPart()
     {
         return $this->uri_part;
-    }
-
-    /**
-     * @param string $user_id
-     * @return $this
-     */
-    public function setUserId($user_id)
-    {
-        $this->user_id = $user_id;
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function getUserId()
-    {
-        return $this->user_id;
     }
 }

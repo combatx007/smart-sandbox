@@ -1,5 +1,5 @@
 <?php
-namespace SmartCore\Bundle\UserBundle\Entity;
+namespace Acme\Bundle\UserBundle\Entity;
 
 use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
