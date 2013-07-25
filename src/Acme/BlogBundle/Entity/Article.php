@@ -8,7 +8,7 @@ use SmartCore\Bundle\BlogBundle\Entity\Article as SmartArticle;
 
 /**
  * @ORM\Entity
- * @ORM\Table(name="articles",
+ * @ORM\Table(name="articles_todo",
  *      indexes={
  *          @ORM\Index(name="user_id", columns={"user_id"}),
  *          @ORM\Index(name="created", columns={"created"})

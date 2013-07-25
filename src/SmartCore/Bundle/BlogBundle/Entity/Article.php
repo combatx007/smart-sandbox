@@ -12,7 +12,6 @@ use SmartCore\Bundle\BlogBundle\Entity\Category;
  * @ORM\Entity
  * @ORM\Table(name="articles",
  *      indexes={
- *          @ORM\Index(name="user_id", columns={"user_id"}),
  *          @ORM\Index(name="created", columns={"created"})
  *      }
  * )

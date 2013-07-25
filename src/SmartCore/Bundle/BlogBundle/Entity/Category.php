@@ -10,14 +10,20 @@ use SmartCore\Bundle\BlogBundle\Entity\Article;
  * @ORM\Entity
  * @ORM\Table(name="categories")
  */
-class Category {
-
+class Category
+{
     /**
      * @ORM\Id
      * @ORM\Column(type="integer")
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     protected $id;
+
+    /**
+     * @ORM\OneToOne(targetEntity="Category")
+     * @ORM\JoinColumn(name="pid", referencedColumnName="id")
+     **/
+    protected $parent;
 
     /**
      * @ORM\Column(type="string", unique=true)
