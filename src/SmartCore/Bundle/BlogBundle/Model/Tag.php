@@ -5,7 +5,7 @@ namespace SmartCore\Bundle\BlogBundle\Model;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 
-class Tag
+abstract class Tag
 {
     /**
      * @ORM\Id

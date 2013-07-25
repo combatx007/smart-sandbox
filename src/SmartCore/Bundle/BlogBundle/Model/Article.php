@@ -9,7 +9,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 /**
  * @UniqueEntity(fields={"uri_part"}, message="Статья с таким сегментом URI уже существует.")
  */
-class Article
+abstract class Article
 {
     /**
      * @ORM\Id
