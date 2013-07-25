@@ -1,20 +1,12 @@
 <?php
 
-namespace SmartCore\Bundle\BlogBundle\Entity;
+namespace SmartCore\Bundle\BlogBundle\Model;
 
 use Doctrine\ORM\Mapping as ORM;
-use Doctrine\Common\Collections\ArrayCollection as ArrayCollection;
+use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
-use SmartCore\Bundle\BlogBundle\Entity\Tag;
-use SmartCore\Bundle\BlogBundle\Entity\Category;
 
 /**
- * @ORM\Entity
- * @ORM\Table(name="articles",
- *      indexes={
- *          @ORM\Index(name="created", columns={"created"})
- *      }
- * )
  * @UniqueEntity(fields={"uri_part"}, message="Статья с таким сегментом URI уже существует.")
  */
 class Article
@@ -53,7 +45,7 @@ class Article
 
     /**
      * @ORM\ManyToOne(targetEntity="Category", inversedBy="articles")
-     * @ORM\JoinColumn(name="category_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="category_id")
      */
     protected $category;
 
@@ -76,8 +68,8 @@ class Article
      * @var ArrayCollection
      * @ORM\ManyToMany(targetEntity="Tag", inversedBy="articles")
      * @ORM\JoinTable(name="articles_tags_relations",
-     *      joinColumns={@ORM\JoinColumn(name="article_id", referencedColumnName="id")},
-     *      inverseJoinColumns={@ORM\JoinColumn(name="tag_id", referencedColumnName="id")}
+     *      joinColumns={@ORM\JoinColumn(name="article_id")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="tag_id")}
      * )
      */
     protected $tags;

@@ -1,14 +1,13 @@
 <?php
 
-namespace SmartCore\Bundle\BlogBundle\Entity;
+namespace SmartCore\Bundle\BlogBundle\Model;
 
 use Doctrine\ORM\Mapping as ORM;
-use Doctrine\Common\Collections\ArrayCollection as ArrayCollection;
-use SmartCore\Bundle\BlogBundle\Entity\Article;
+use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
- * @ORM\Entity
- * @ORM\Table(name="categories")
+ * @UniqueEntity(fields={"uri_part"}, message="Категория с таким сегментом URI уже существует.")
  */
 class Category
 {

@@ -4,53 +4,48 @@ namespace Acme\BlogBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
-use SmartCore\Bundle\BlogBundle\Entity\Article as SmartArticle;
+use SmartCore\Bundle\BlogBundle\Model\Article as SmartArticle;
 
 /**
  * @ORM\Entity
- * @ORM\Table(name="articles_todo",
+ * @ORM\Table(name="blog_articles",
  *      indexes={
- *          @ORM\Index(name="user_id", columns={"user_id"}),
  *          @ORM\Index(name="created", columns={"created"})
  *      }
  * )
- * @UniqueEntity(fields={"uri_part"}, message="Статья с таким сегментом URI уже существует.")
  */
 class Article extends SmartArticle
 {
     /**
-     * @ORM\Id
-     * @ORM\Column(type="integer")
-     * @ORM\GeneratedValue(strategy="AUTO")
+     * @ORM\OneToOne(targetEntity="Acme\UserBundle\Entity\User")
+     * @ORM\JoinColumn(name="user_id")
      */
-    protected $id;
+    protected $user;
 
     /**
-     * @ORM\Column(type="string")
+     * @ORM\ManyToMany(targetEntity="Tag", inversedBy="articles")
+     * @ORM\JoinTable(name="blog_articles_tags_relations",
+     *      joinColumns={@ORM\JoinColumn(name="article_id")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="tag_id")}
+     * )
      */
-    protected $user_id;
-
-    public function __construct()
-    {
-        parent::__construct();
-        // your own logic
-    }
+    protected $tags;
 
     /**
-     * @param string $user_id
+     * @param mixed $user
      * @return $this
      */
-    public function setUserId($user_id)
+    public function setUser($user)
     {
-        $this->user_id = $user_id;
+        $this->user = $user;
         return $this;
     }
 
     /**
-     * @return string
+     * @return \Acme\UserBundle\Entity\User
      */
-    public function getUserId()
+    public function getUser()
     {
-        return $this->user_id;
+        return $this->user;
     }
 }
